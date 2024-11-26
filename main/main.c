@@ -38,6 +38,10 @@
 #define FRAME_DELAY_HI     ((FRAME_DELAY_LO) + 1)
 
 
+const fixed_ffxt FM_main_1_2    =     0x8000;
+const fixed_ffxt FM_main_1_4    =     0x4000;
+
+
 typedef struct _PanelInit {
     PanelInit init;
     int id;
@@ -290,10 +294,10 @@ void panel_offEvent(int eventId) {
 //  - t=1:  alpha = 0%
 static fixed_ffxt FadeInFadeOut(fixed_ffxt t) {
     //fixed_ffxt t0 = t;
-    if (t < FM_1_2) {
+    if (t < FM_main_1_2) {
         t *= 2;
     } else {
-        t = FM_1 - (t - FM_1_2) * 2;
+        t = FM_1 - (t - FM_main_1_2) * 2;
     }
 
     return FfxCurveLinear(t);
@@ -301,11 +305,11 @@ static fixed_ffxt FadeInFadeOut(fixed_ffxt t) {
 
 // Animate the position, quadratically 
 static fixed_ffxt AnimateWaft(fixed_ffxt t) {
-    if (t < FM_1_2) {
-        return mulfx(FfxCurveEaseOutQuad(t * 2), FM_1_2);
+    if (t < FM_main_1_2) {
+        return mulfx(FfxCurveEaseOutQuad(t * 2), FM_main_1_2);
     }
-    t -= FM_1_2;
-    return FM_1_2 + mulfx(FfxCurveEaseInQuad(t * 2), FM_1_2);
+    t -= FM_main_1_2;
+    return FM_main_1_2 + mulfx(FfxCurveEaseInQuad(t * 2), FM_main_1_2);
 }
 
 static void animatePixie(FfxScene scene, FfxNode mover, FfxSceneActionStop stopAction) {

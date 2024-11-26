@@ -69,7 +69,7 @@ static void onMessage(EventPayload event, void *_state) {
             return;
         }
 
-        int r = panel_sendReply(&attest, 512);
+        int r = panel_sendReply((uint8_t *)&attest, 512);
         printf("Reply: %d %d\n", sizeof(attest), r);
     }
 }
@@ -108,19 +108,19 @@ static int _init(FfxScene scene, FfxNode node, void *_state, void *arg) {
 
     FfxNode text;
 
-    text = ffx_scene_createTextStr(scene, txtTitle);
+    text = ffx_scene_createText(scene, txtTitle, (uint32_t)strlen(txtTitle));
     ffx_scene_appendChild(node, text);
     ffx_scene_nodeSetPosition(text, (FfxPoint){
         .x = 120 - ((strlen(txtTitle) * 17 - 1) / 2), .y = 70
     });
 
-    text = ffx_scene_createTextStr(scene, state->txtSerial);
+    text = ffx_scene_createText(scene, state->txtSerial, (uint32_t)strlen(state->txtSerial));
     ffx_scene_appendChild(node, text);
     ffx_scene_nodeSetPosition(text, (FfxPoint){
         .x = 40, .y = 120
     });
 
-    text = ffx_scene_createTextStr(scene, state->txtModel);
+    text = ffx_scene_createText(scene, state->txtModel, (uint32_t)strlen(state->txtModel));
     ffx_scene_appendChild(node, text);
     ffx_scene_nodeSetPosition(text, (FfxPoint){
         .x = 40, .y = 160

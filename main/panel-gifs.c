@@ -1,5 +1,6 @@
 #include <stdio.h>
-
+#include <string.h>
+#include <stdint.h> 
 #include "firefly-scene.h"
 
 #include "panel.h"
@@ -95,7 +96,7 @@ static void setFoxFrame(FfxNode node) {
     };
 
     const uint16_t *imgData = frames[frame];
-    ffx_scene_imageSetData(node, imgData, sizeof(image_fox_0));
+    ffx_scene_createImage(node, imgData, sizeof(image_fox_0));
 }
 
 static void setNyanFrame(FfxNode node) {
@@ -110,7 +111,7 @@ static void setNyanFrame(FfxNode node) {
     };
 
     const uint16_t *imgData = frames[frame];
-    ffx_scene_imageSetData(node, imgData, sizeof(image_fox_0));
+    ffx_scene_createImage(node, imgData, sizeof(image_fox_0));
 }
 
 static void setShibaFrame(FfxNode node) {
@@ -127,7 +128,7 @@ static void setShibaFrame(FfxNode node) {
     };
 
     const uint16_t *imgData = frames[frame];
-    ffx_scene_imageSetData(node, imgData, sizeof(image_fox_0));
+    ffx_scene_createImage(node, imgData, sizeof(image_fox_0));
 }
 
 static void setRrollFrame(FfxNode node) {
@@ -147,7 +148,7 @@ static void setRrollFrame(FfxNode node) {
     };
 
     const uint16_t *imgData = frames[frame];
-    ffx_scene_imageSetData(node, imgData, sizeof(image_rroll_0));
+    ffx_scene_createImage(node, imgData, sizeof(image_rroll_0));
 }
 
 
@@ -192,19 +193,19 @@ static int _init(FfxScene scene, FfxNode node, void *_state, void *arg) {
 
     FfxNode text;
 
-    text = ffx_scene_createTextStr(scene, phraseOption1);
+    text = ffx_scene_createText(scene, phraseOption1, (uint32_t)strlen(phraseOption1));
     ffx_scene_appendChild(menu, text);
     ffx_scene_nodeSetPosition(text, (FfxPoint){ .x = 130, .y = 24 });
 
-    text = ffx_scene_createTextStr(scene, phraseOption2);
+    text = ffx_scene_createText(scene, phraseOption2, (uint32_t)strlen(phraseOption2));
     ffx_scene_appendChild(menu, text);
     ffx_scene_nodeSetPosition(text, (FfxPoint){ .x = 130, .y = 94 });
 
-    text = ffx_scene_createTextStr(scene, phraseOption3);
+    text = ffx_scene_createText(scene, phraseOption3, (uint32_t)strlen(phraseOption3));
     ffx_scene_appendChild(menu, text);
     ffx_scene_nodeSetPosition(text, (FfxPoint){ .x = 130, .y = 163 });
 
-    text = ffx_scene_createTextStr(scene, phraseOption4);
+    text = ffx_scene_createText(scene, phraseOption4, (uint32_t)strlen(phraseOption4));
     ffx_scene_appendChild(menu, text);
     ffx_scene_nodeSetPosition(text, (FfxPoint){ .x = 130, .y = 232 });
 

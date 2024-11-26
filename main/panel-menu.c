@@ -1,5 +1,6 @@
 #include <stdio.h>
-
+#include <string.h>
+#include <stdint.h> 
 #include "firefly-scene.h"
 
 #include "panel.h"
@@ -7,6 +8,7 @@
 #include "./panel-gifs.h"
 #include "./panel-menu.h"
 #include "./panel-space.h"
+
 
 #include "images/image-arrow.h"
 
@@ -68,15 +70,15 @@ static int _init(FfxScene scene, FfxNode node, void *_app, void *arg) {
 
     FfxNode text;
 
-    text = ffx_scene_createTextStr(scene, phraseOption1);
+    text = ffx_scene_createText(scene, phraseOption1, (uint32_t)strlen(phraseOption1));
     ffx_scene_appendChild(node, text);
     ffx_scene_nodeSetPosition(text, (FfxPoint){ .x = 70, .y = 85 });
 
-    text = ffx_scene_createTextStr(scene, phraseOption2);
+    text = ffx_scene_createText(scene, phraseOption2, (uint32_t)strlen(phraseOption1));
     ffx_scene_appendChild(node, text);
     ffx_scene_nodeSetPosition(text, (FfxPoint){ .x = 70, .y = 125 });
 
-    text = ffx_scene_createTextStr(scene, phraseOption3);
+    text = ffx_scene_createText(scene, phraseOption3, (uint32_t)strlen(phraseOption1));
     ffx_scene_appendChild(node, text);
     ffx_scene_nodeSetPosition(text, (FfxPoint){ .x = 70, .y = 165 });
 

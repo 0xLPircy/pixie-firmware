@@ -136,9 +136,9 @@ static void render(EventPayload event, void *_app) {
         if (!space->dead[toggle]) {
             uint16_t *current = ffx_scene_imageData(space->alien[toggle]);
             if (current == image_alien1) {
-                ffx_scene_imageSetData(space->alien[toggle], image_alien2, sizeof(image_alien2));
+                ffx_scene_createImage(space->alien[toggle], image_alien2, sizeof(image_alien2));
             } else {
-                ffx_scene_imageSetData(space->alien[toggle], image_alien1, sizeof(image_alien1));
+                ffx_scene_createImage(space->alien[toggle], image_alien1, sizeof(image_alien1));
             }
         }
     }
